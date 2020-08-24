@@ -1,0 +1,31 @@
+una de las herramientas mas importantes
+LA PODEMOS VER COMO TABLA DINAMICA
+
+
+SELECT * FROM clients
+
+elegir algo especifico
+
+SELECT NAME FROM CLIENTS;
+SELECT NAME, GENDER FROM CLIENTS WHERE GENDER = 'M';
+
+SELECT YEAR(BIRTHDATE) FROM CLIENTS;
+SELECT NOW()
+
+SELECT name, email, gender 
+FROM clients 
+WHERE gender = 'F' 
+
+/// para tener la edad de alguien
+
+SELECT name, YEAR(NOW()) - YEAR (birthdate) 
+FROM clients LIMIT(10)
+
+/// LIKE para buscar entre los datos 
+
+SELECT * FROM clients where name LIKE '%Saav%';
+
+SELECT name, email, YEAR(NOW()) - YEAR (birthdate) AS age, gender 
+FROM clients 
+WHERE gender = 'F' 
+AND NAME LIKE '%Lop%'

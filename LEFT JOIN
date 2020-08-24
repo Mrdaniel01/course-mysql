@@ -1,0 +1,42 @@
+select a.author_id, a.name, a.nationality, b.title 
+from authors as a 
+join books as b 
+  on b.author_id = a.author_id 
+where a.author_id between 1 and 5
+
+///ORDER BY 
+
+select a.author_id, a.name, a.nationality, b.title 
+from authors as a 
+join books as b 
+  on b.author_id = a.author_id 
+where a.author_id between 1 and 5
+order by a.author_id
+
+select a.author_id, a.name, a.nationality, b.title 
+from authors as a 
+join books as b 
+  on b.author_id = a.author_id 
+where a.author_id between 1 and 5
+order by a.author_id
+
+/// LEFT JOIN
+////me trae todo, incluso si no tiene datos es decir, todos los
+////autores aunque no tengan libros
+
+select a.author_id, a.name, a.nationality, b.title 
+from authors as a 
+left join books as b 
+  on b.author_id = a.author_id 
+where a.author_id between 1 and 5
+order by a.author_id
+
+//TRAER AUTOR CON CANTIDAD DE libros
+
+select a.author_id, a.name, a.nationality, COUNT(b.book_id)
+from authors as a 
+left join books as b 
+  on b.author_id = a.author_id 
+where a.author_id between 1 and 5
+GROUP BY a.author_id
+order by a.author_id

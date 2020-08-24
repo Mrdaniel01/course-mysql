@@ -1,0 +1,21 @@
+//TRAER AUTOR CON CANTIDAD DE libros
+
+///cuando usamos el count debemos colocar el group by para que
+/// no itere sobre lo que ya se conto
+/// preferiblemente una cadena de texto
+
+select a.author_id, a.name, a.nationality, COUNT(b.book_id)
+from authors as a 
+left join books as b 
+  on b.author_id = a.author_id 
+where a.author_id between 1 and 5
+GROUP BY a.author_id
+order by a.author_id
+
+select a.author_id, a.name, a.nationality, COUNT(b.book_id)
+from authors as a 
+join books as b 
+  on b.author_id = a.author_id 
+where a.author_id between 1 and 5
+GROUP BY a.author_id
+order by a.author_id

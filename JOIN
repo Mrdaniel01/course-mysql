@@ -1,0 +1,59 @@
+EL CORAZON DE LAS RELACIONES
+
+/// contar
+
+select count(*) from books;
+select count(*) from authors;
+
+select book_id, author_id, title from books where author_id between 1 and 5;
+
+//JOIN
+
+select b.book_id, a.name, b.title
+from books as b 
+join authors as a 
+  on a.author_id = b.author_id
+where a.author_id between 1 and 5
+
+/// seleccionar mujeres que han comprado libros (nombre del libro y autor)
+
+select c.name, b.title, t.type
+from transactions as t 
+join books as b 
+  on t.book_id = b.book_id 
+join clients as c 
+  on t.client_id = c.client_id
+join authors as a 
+  on b.author_id = a.author_id
+where c.gender = 'F' 
+  and t.type = 'sell'
+
+/// seleccionar hombres que han comprado o tienen libro sin devolver
+
+select c.name, b.title, t.type
+from transactions as t 
+join books as b 
+  on t.book_id = b.book_id 
+join clients as c 
+  on t.client_id = c.client_id
+join authors as a 
+  on b.author_id = a.author_id
+where c.gender = 'M' 
+  and t.type IN ('sell', 'lend');
+
+  /// agregar transactions al DataBase
+
+INSERT INTO transactions (transaction_id, book_id, client_id, `type`, `finished`) 
+VALUES (1, 12, 34, 'sell', 1),
+(2, 54, 87, 'lend', 0),
+(3, 3, 14, 'sell', 1),
+(4, 1, 54, 'sell', 1),
+(5, 12, 81, 'lend', 1),
+(6, 12, 81, 'return', 1),
+(7, 87, 29, 'sell', 1);
+
+ALTER TABLE  transactions 
+MODIFY COLUMN `type` enum(
+'sell', 'lend', 'return') 
+NOT NULL AFTER client_id; 
+

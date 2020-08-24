@@ -1,0 +1,96 @@
+1. Que nacionalidades hay
+
+SELECT DISTINCT nationality FROM authors ORDER BY nationality;
+
+2. Cuantos autores hay de cada nacionalidad?
+
+2.2
+SELECT nationality, COUNT(author_id) AS c_authors
+FROM authors
+GROUP BY nationality
+ORDER BY c_authors, nationality 
+
+2.3
+SELECT nationality, COUNT(author_id) AS c_authors
+FROM authors
+WHERE nationality IS NOT NULL
+GROUP BY nationality
+ORDER BY c_authors, nationality 
+
+2.4
+SELECT nationality, COUNT(author_id) AS c_authors
+FROM authors
+WHERE nationality IS NOT NULL
+  AND nationality NOT IN ('RUS')
+GROUP BY nationality
+ORDER BY c_authors, nationality
+
+2.5
+SELECT nationality, COUNT(author_id) AS c_authors
+FROM authors
+WHERE nationality IS NOT NULL
+  AND nationality IN ('RUS', 'COL')
+GROUP BY nationality
+ORDER BY c_authors, nationality
+
+3. Promedio desviacion estandar de precios
+
+SELECT nationality,
+COUNT(book_id) as libros,
+AVG(price) as prom,
+STDDEV(price) AS std
+FROM books as b 
+JOIN authors as a 
+  ON a.author_id = b.author_id
+GROUP BY nationality
+ORDER BY libros DESC
+
+4. MAX Y MIN
+
+SELECT MAX(price), MIN(price)
+FROM books
+
+SELECT nationality, MAX(price) as M_price, MIN(price)
+FROM books as b 
+JOIN authors AS a 
+  ON a.author_id = b.author_id
+GROUP BY nationality
+ORDER BY M_price
+
+
+5. Reporte de prestamos
+
+SELECT c.name, t.type, b.title, a.name, a.nationality
+FROM transactions AS t 
+LEFT JOIN clients AS c 
+  ON c.client_id = t.client_id 
+LEFT JOIN books AS b
+  ON b.book_id = t.book_id 
+LEFT JOIN authors AS a 
+  ON b.author_id = a.author_id
+
+CONCAT AUTOR Y PAIS
+
+SELECT c.name, t.type, b.title, 
+CONCAT(a.name, " (", a.nationality, ")") AS AUTOR
+FROM transactions AS t 
+LEFT JOIN clients AS c 
+  ON c.client_id = t.client_id 
+LEFT JOIN books AS b
+  ON b.book_id = t.book_id 
+LEFT JOIN authors AS a 
+  ON b.author_id = a.author_id
+
+  FECHAS 
+  //hace cuantos dias se presto un libro, 
+
+SELECT c.name, t.type, b.title, 
+CONCAT(a.name, " (", a.nationality, ")") AS AUTOR,
+TO_DAYS(NOW()) - TO_DAYS(t.created_at) as ago
+FROM transactions AS t 
+LEFT JOIN clients AS c 
+  ON c.client_id = t.client_id 
+LEFT JOIN books AS b
+  ON b.book_id = t.book_id 
+LEFT JOIN authors AS a 
+  ON b.author_id = a.author_id

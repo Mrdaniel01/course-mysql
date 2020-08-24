@@ -1,0 +1,41 @@
+//NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE 
+//NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE 
+//NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE 
+//NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE 
+//NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE //NUNCA OLVIDAR EL WHERE 
+
+DELETE FROM authors WHERE author_id = 161 limit 1;
+
+
+UPDATE tabla
+set
+  [columna = calor, ...]
+WHERE
+  [condiciones]
+limit 1
+
+//CAMBIAR ESTADO (ACTIVE) de un cliente
+ 
+UPDATE clients
+set active = 0
+where client_id = 2
+limit 1;
+
+UPDATE clients
+set 
+  email = 'hola@gmail.com'
+where 
+  client_id = 2;
+
+
+VARIOS AL TIEMPO
+
+update clients 
+set 
+  active = 0
+where 
+  client_id IN (1, 2, 3 ,4)
+  OR name like '%Lopez%'
+
+
+TRUNCATE VACIA LA TABLA 

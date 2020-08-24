@@ -1,0 +1,13 @@
+PODEMOS SACAR EL ESQUEMA Y VERSIONARLO
+
+mysqldump -u user -p database_name > esquema.sql - 
+
+
+guarda el esquema de una base de datos con todo y datos en un
+archivo sql.
+
+
+mysqldump -u user -p -d database_name 
+
+
+es parecido al comando anterior solo que aquí no se guardan los datos.
